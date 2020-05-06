@@ -44,51 +44,53 @@
 		regulator-max-microvolt = <1225000>;
 		regulator-always-on; // XXX
 	};
-
 	/* VDD_CX supply */
-  rpm-regulator-smpa2 {
-    status = "okay";
-    pm8937_s2_level: regulator-s2-level {
-      compatible = "qcom,rpm-smd-regulator";
-      regulator-name = "pm8937_s2_level";
-      qcom,set = <3>;
-      regulator-min-microvolt =
-        <RPM_SMD_REGULATOR_LEVEL_RETENTION>;
-      regulator-max-microvolt =
-        <RPM_SMD_REGULATOR_LEVEL_BINNING>;
-      qcom,use-voltage-level;
-    };
 
-    pm8937_s2_floor_level: regulator-s2-floor-level {
-      compatible = "qcom,rpm-smd-regulator";
-      regulator-name = "pm8937_s2_floor_level";
-      qcom,set = <3>;
-      regulator-min-microvolt =
-        <RPM_SMD_REGULATOR_LEVEL_RETENTION>;
-      regulator-max-microvolt =
-        <RPM_SMD_REGULATOR_LEVEL_BINNING>;
-      qcom,use-voltage-floor-level;
-      qcom,always-send-voltage;
-    };
+	rpm-regulator-smpa2 {
+		status = "okay";
+		pm8937_s2_level: regulator-s2-level {
+			compatible = "qcom,rpm-smd-regulator";
+			regulator-name = "pm8937_s2_level";
+			qcom,set = <3>;
+			regulator-min-microvolt =
+				<RPM_SMD_REGULATOR_LEVEL_RETENTION>;
+			regulator-max-microvolt =
+				<RPM_SMD_REGULATOR_LEVEL_BINNING>;
+			qcom,use-voltage-level;
+		};
 
-    pm8937_s2_level_ao: regulator-s2-level-ao {
-      compatible = "qcom,rpm-smd-regulator";
-      regulator-name = "pm8937_s2_level_ao";
-      qcom,set = <1>;
-      regulator-min-microvolt =
-        <RPM_SMD_REGULATOR_LEVEL_RETENTION>;
-      regulator-max-microvolt =
-        <RPM_SMD_REGULATOR_LEVEL_BINNING>;
-      qcom,use-voltage-level;
-    };
+		pm8937_s2_floor_level: regulator-s2-floor-level {
+			compatible = "qcom,rpm-smd-regulator";
+			regulator-name = "pm8937_s2_floor_level";
+			qcom,set = <3>;
+			regulator-min-microvolt =
+				<RPM_SMD_REGULATOR_LEVEL_RETENTION>;
+			regulator-max-microvolt =
+				<RPM_SMD_REGULATOR_LEVEL_BINNING>;
+			qcom,use-voltage-floor-level;
+			qcom,always-send-voltage;
+		};
+		
+		pm8937_s2_level_ao: regulator-s2-level-ao {
+			compatible = "qcom,rpm-smd-regulator";
+			regulator-name = "pm8937_s2_level_ao";
+			qcom,set = <1>;
+			regulator-min-microvolt =
+				<RPM_SMD_REGULATOR_LEVEL_RETENTION>;
+			regulator-max-microvolt =
+				<RPM_SMD_REGULATOR_LEVEL_BINNING>;
+			qcom,use-voltage-level;
+			
+		};
 
-    pm8937_cx_cdev: regulator-cx-cdev {
-      compatible = "qcom,regulator-cooling-device";
-      regulator-cdev-supply = <&pm8937_s2_floor_level>;
-      regulator-levels = <RPM_SMD_REGULATOR_LEVEL_NOM_PLUS
-          RPM_SMD_REGULATOR_LEVEL_RETENTION>;
-      #cooling-cells = <2>;
-    };
+		pm8937_cx_cdev: regulator-cx-cdev {
+			compatible = "qcom,regulator-cooling-device";
+			regulator-cdev-supply = <&pm8937_s2_floor_level>;
+			regulator-levels = <RPM_SMD_REGULATOR_LEVEL_NOM_PLUS
+					RPM_SMD_REGULATOR_LEVEL_RETENTION>;
+			#cooling-cells = <2>;
+		};
+	};
 
 	s3 {
 		regulator-min-microvolt = <1300000>;
